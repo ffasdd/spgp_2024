@@ -5,12 +5,14 @@
     android:layout_height="match_parent"
     tools:context=".Stage1Activity">
 
-    <TextView
+
+    <GridLayout
+        android:id="@+id/gridLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Stage 4"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"
+        android:rowCount="3"
+        android:columnCount="3"
+        android:orientation="horizontal"/>
 
 </RelativeLayout>

@@ -12,7 +12,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import java.util.*
 private lateinit var sharedPreferences: SharedPreferences
-class Stage3Activity : AppCompatActivity() {
+class Stage4Activity : AppCompatActivity() {
     private val buttons = Array(GRID_SIZE) {
         arrayOfNulls<Button>(
             GRID_SIZE
@@ -23,10 +23,10 @@ class Stage3Activity : AppCompatActivity() {
             GRID_SIZE
         )
     }
-    private val answerArray = intArrayOf(1,13,5,2,12,10,7,11,6)
+    private val answerArray = intArrayOf(4,3,2,9,4,9,7,11,6)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_stage3)
+        setContentView(R.layout.activity_stage4)
 
         // Set up the grid layout
         val gridLayout = findViewById<GridLayout>(R.id.gridLayout)
