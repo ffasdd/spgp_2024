@@ -1,14 +1,17 @@
 package com.example.ppp
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
+import android.view.View
 import android.widget.Button
 import android.widget.GridLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import java.util.Random
-
+import java.util.*
+private lateinit var sharedPreferences: SharedPreferences
 class Stage1Activity : AppCompatActivity() {
     private val buttons = Array(GRID_SIZE) {
         arrayOfNulls<Button>(
@@ -24,6 +27,22 @@ class Stage1Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_stage1)
+
+        sharedPreferences = getSharedPreferences("stage_info", Context.MODE_PRIVATE)
+
+        val stage = intent.getIntExtra("stage_number", 1)
+
+        // Reset stage information on app start (optional, depending on your game logic)
+        resetStageInfo()
+
+        // Check if the stage is playable
+        if (!isStagePlayable(stage)) {
+            showMessage("Stage $stage is locked. Complete previous stages first.")
+            Handler().postDelayed({
+                navigateToMainScreen()
+            }, 3000)
+            return
+        }
 
         // Set up the grid layout
         val gridLayout = findViewById<GridLayout>(R.id.gridLayout)
@@ -133,5 +152,28 @@ class Stage1Activity : AppCompatActivity() {
     }
     companion object {
         private const val GRID_SIZE = 3
+    }
+    private fun resetStageInfo() {
+        // Clear all stage completion info
+        val editor = sharedPreferences.edit()
+        editor.clear()
+        editor.apply()
+    }
+
+    private fun markStageComplete(stage: Int) {
+        // Mark the current stage as complete
+        val editor = sharedPreferences.edit()
+        editor.putBoolean("stage_${stage}_complete", true)
+        editor.apply()
+    }
+
+    private fun isStagePlayable(stage: Int): Boolean {
+        // Check if all previous stages are completed
+        for (i in 1 until stage) {
+            if (!sharedPreferences.getBoolean("stage_${i}_complete", false)) {
+                return false
+            }
+        }
+        return true
     }
 }
