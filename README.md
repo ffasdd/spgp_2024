@@ -4,6 +4,8 @@
 파이프를 회전시켜 하나로 연결된 파이프 라인을 완성하여 스테이지를 클리어 합니다.<br/>
 
 # 개발 계획/일정/실제 진행
+![image](https://github.com/ffasdd/spgp_2024/assets/96010665/13c24ded-76ea-4fa0-8e8f-18b4fcf84d7e)
+
 ![image](https://github.com/ffasdd/spgp_2024/assets/96010665/3a0ed752-176d-424f-95aa-fb4b642d8faa)
 
 반복되는 오류와 졸업작품 등으로 인해 목표 수정<br/>
