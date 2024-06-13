@@ -19,6 +19,9 @@
             android:name=".Stage2Activity"
             android:exported="false" />
         <activity
+            android:name=".Stage3Activity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
