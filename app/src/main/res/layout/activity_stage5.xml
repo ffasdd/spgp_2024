@@ -3,14 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Stage1Activity">
+    tools:context=".Stage5Activity">
 
-    <TextView
+
+    <GridLayout
+        android:id="@+id/gridLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Stage 5"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"
+        android:rowCount="4"
+        android:columnCount="4"
+        android:orientation="horizontal"/>
+
 
 </RelativeLayout>

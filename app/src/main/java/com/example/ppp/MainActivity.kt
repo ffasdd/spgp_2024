@@ -23,7 +23,11 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
     public fun openStage4(view: View) {
-        val intent = Intent(this, Stage3Activity::class.java)
+        val intent = Intent(this, Stage4Activity::class.java)
+        startActivity(intent)
+    }
+    public fun openStage5(view: View) {
+        val intent = Intent(this, Stage5Activity::class.java)
         startActivity(intent)
     }
 }
