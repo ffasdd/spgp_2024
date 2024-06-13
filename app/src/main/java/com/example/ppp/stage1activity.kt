@@ -1,6 +1,8 @@
 package com.example.ppp
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.widget.Button
 import android.widget.GridLayout
 import android.widget.Toast
@@ -41,9 +43,14 @@ class Stage1Activity : AppCompatActivity() {
                     buttonStates[row][col] = getNextState(buttonStates[row][col])
                     updateButtonImage(button, buttonStates[row][col])
 
-                    // Check if the button state matches answerArray
-                    if (buttonStates[row][col] == answerArray[row * GRID_SIZE + col]) {
-                        showMessage("Correct answer for cell ($row, $col)")
+                    // Check if all button states match answerArray
+                    if (checkAllCorrect()) {
+                        showMessage("All answers are correct!")
+
+                        // Delay navigation to main screen after 3 seconds
+                        Handler().postDelayed({
+                            navigateToMainScreen()
+                        }, 3000)
                     }
                 }
 
@@ -107,6 +114,22 @@ class Stage1Activity : AppCompatActivity() {
     }
     private fun showMessage(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun checkAllCorrect(): Boolean {
+        for (row in 0 until GRID_SIZE) {
+            for (col in 0 until GRID_SIZE) {
+                if (buttonStates[row][col] != answerArray[row * GRID_SIZE + col]) {
+                    return false
+                }
+            }
+        }
+        return true
+    }
+    private fun navigateToMainScreen() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish() // Close this activity
     }
     companion object {
         private const val GRID_SIZE = 3
