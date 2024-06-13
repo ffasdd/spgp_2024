@@ -30,4 +30,24 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, Stage5Activity::class.java)
         startActivity(intent)
     }
+    public fun openStage6(view: View) {
+        val intent = Intent(this, Stage5Activity::class.java)
+        startActivity(intent)
+    }
+    public fun openStage7(view: View) {
+        val intent = Intent(this, Stage5Activity::class.java)
+        startActivity(intent)
+    }
+    public fun openStage8(view: View) {
+        val intent = Intent(this, Stage5Activity::class.java)
+        startActivity(intent)
+    }
+    public fun openStage9(view: View) {
+        val intent = Intent(this, Stage5Activity::class.java)
+        startActivity(intent)
+    }
+    public fun openStage10(view: View) {
+        val intent = Intent(this, Stage5Activity::class.java)
+        startActivity(intent)
+    }
 }
