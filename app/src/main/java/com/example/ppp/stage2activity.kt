@@ -23,26 +23,10 @@ class Stage2Activity : AppCompatActivity() {
             GRID_SIZE
         )
     }
-    private val answerArray = intArrayOf(2,4,5,9,9,9,7,6,0)
+    private val answerArray = intArrayOf(1,13,3,4,11,5,7,8,6)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_stage2)
-
-        sharedPreferences = getSharedPreferences("stage_info", Context.MODE_PRIVATE)
-
-        val stage = intent.getIntExtra("stage_number", 2)
-
-        // Reset stage information on app start (optional, depending on your game logic)
-        resetStageInfo()
-
-        // Check if the stage is playable
-        if (!isStagePlayable(stage)) {
-            showMessage("Stage $stage is locked. Complete previous stages first.")
-            Handler().postDelayed({
-                navigateToMainScreen()
-            }, 3000)
-            return
-        }
 
         // Set up the grid layout
         val gridLayout = findViewById<GridLayout>(R.id.gridLayout)
@@ -158,22 +142,5 @@ class Stage2Activity : AppCompatActivity() {
         val editor = sharedPreferences.edit()
         editor.clear()
         editor.apply()
-    }
-
-    private fun markStageComplete(stage: Int) {
-        // Mark the current stage as complete
-        val editor = sharedPreferences.edit()
-        editor.putBoolean("stage_${stage}_complete", true)
-        editor.apply()
-    }
-
-    private fun isStagePlayable(stage: Int): Boolean {
-        // Check if all previous stages are completed
-        for (i in 1 until stage) {
-            if (!sharedPreferences.getBoolean("stage_${i}_complete", false)) {
-                return false
-            }
-        }
-        return true
     }
 }
