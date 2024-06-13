@@ -17,7 +17,7 @@ class Stage1Activity : AppCompatActivity() {
             GRID_SIZE
         )
     }
-
+    private val answerArray = intArrayOf(2,4,5,9,9,9,7,6,0)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_stage1)
@@ -32,7 +32,8 @@ class Stage1Activity : AppCompatActivity() {
         for (row in 0 until GRID_SIZE) {
             for (col in 0 until GRID_SIZE) {
                 buttons[row][col] = Button(this)
-                buttonStates[row][col] = random.nextInt(14) // Initial state between 0 and 13
+                buttonStates[row][col] =
+                    getInitialRandomState(answerArray[row * GRID_SIZE + col], random)
                 updateButtonImage(buttons[row][col], buttonStates[row][col])
                 buttons[row][col]!!.setOnClickListener { // Update button state within allowed range
                     buttonStates[row][col] =
@@ -45,6 +46,25 @@ class Stage1Activity : AppCompatActivity() {
                 gridLayout.addView(buttons[row][col])
             }
         }
+    }
+
+    private fun getInitialRandomState(answer: Int, random: Random): Int {
+        var startRange = 0
+        var endRange = 0
+        if (answer >= 0 && answer <= 3) {
+            startRange = 0
+            endRange = 3
+        } else if (answer >= 4 && answer <= 7) {
+            startRange = 4
+            endRange = 7
+        } else if (answer >= 8 && answer <= 9) {
+            startRange = 8
+            endRange = 9
+        } else if (answer >= 10 && answer <= 13) {
+            startRange = 10
+            endRange = 13
+        }
+        return startRange + random.nextInt(endRange - startRange + 1)
     }
 
     private fun getNextState(currentState: Int): Int {
@@ -62,9 +82,9 @@ class Stage1Activity : AppCompatActivity() {
 
     private fun updateButtonImage(button: Button?, state: Int) {
         when (state) {
-            0 -> button!!.setBackgroundResource(R.drawable.pipefin_down)
-            1 -> button!!.setBackgroundResource(R.drawable.pipefin_up)
-            2 -> button!!.setBackgroundResource(R.drawable.pipefin_right)
+            0 -> button!!.setBackgroundResource(R.drawable.pipefin_up)
+            1 -> button!!.setBackgroundResource(R.drawable.pipefin_right)
+            2 -> button!!.setBackgroundResource(R.drawable.pipefin_down)
             3 -> button!!.setBackgroundResource(R.drawable.pipefin_left)
 
             4 -> button!!.setBackgroundResource(R.drawable.pipe_curved1)
