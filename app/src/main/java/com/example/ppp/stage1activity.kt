@@ -31,14 +31,37 @@ class Stage1Activity : AppCompatActivity() {
             for (col in 0 until GRID_SIZE) {
                 buttons[row][col] = Button(this)
                 buttonStates[row][col] = 0 // Initial state is 0
-                buttons[row][col]!!.text = buttonStates[row][col].toString()
+                updateButtonImage(buttons[row][col], buttonStates[row][col])
                 buttons[row][col]!!.setOnClickListener { // Update button state
                     buttonStates[row][col] = (buttonStates[row][col] + 1) % 16
-                    buttons[row][col]!!.text =
-                        buttonStates[row][col].toString()
+                    updateButtonImage(
+                        buttons[row][col],
+                        buttonStates[row][col]
+                    )
                 }
                 gridLayout.addView(buttons[row][col])
             }
+        }
+    }
+
+    private fun updateButtonImage(button: Button?, state: Int) {
+        when (state) {
+            0 -> button!!.setBackgroundResource(R.drawable.pipefin_down)
+            1 -> button!!.setBackgroundResource(R.drawable.pipefin_up)
+            2 -> button!!.setBackgroundResource(R.drawable.pipefin_right)
+            3 -> button!!.setBackgroundResource(R.drawable.pipefin_left)
+            4 -> button!!.setBackgroundResource(R.drawable.pipefin_up)
+            5 -> button!!.setBackgroundResource(R.drawable.pipefin_up)
+            6 -> button!!.setBackgroundResource(R.drawable.pipefin_up)
+            7 -> button!!.setBackgroundResource(R.drawable.pipefin_up)
+            8 -> button!!.setBackgroundResource(R.drawable.pipefin_up)
+            9 -> button!!.setBackgroundResource(R.drawable.pipefin_up)
+            10 -> button!!.setBackgroundResource(R.drawable.pipefin_up)
+            11 -> button!!.setBackgroundResource(R.drawable.pipefin_up)
+            12 -> button!!.setBackgroundResource(R.drawable.pipefin_up)
+            13 -> button!!.setBackgroundResource(R.drawable.pipefin_up)
+            14 -> button!!.setBackgroundResource(R.drawable.pipefin_up)
+            15 -> button!!.setBackgroundResource(R.drawable.pipefin_up)
         }
     }
 
