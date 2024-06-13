@@ -3,6 +3,7 @@ package com.example.ppp
 import android.os.Bundle
 import android.widget.Button
 import android.widget.GridLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import java.util.Random
 
@@ -28,26 +29,29 @@ class Stage1Activity : AppCompatActivity() {
         gridLayout.setColumnCount(GRID_SIZE)
         val random = Random()
 
-        // Initialize grid buttons and states
+        // Set up buttons and their initial states
         for (row in 0 until GRID_SIZE) {
             for (col in 0 until GRID_SIZE) {
-                buttons[row][col] = Button(this)
-                buttonStates[row][col] =
-                    getInitialRandomState(answerArray[row * GRID_SIZE + col], random)
-                updateButtonImage(buttons[row][col], buttonStates[row][col])
-                buttons[row][col]!!.setOnClickListener { // Update button state within allowed range
-                    buttonStates[row][col] =
-                        getNextState(buttonStates[row][col])
-                    updateButtonImage(
-                        buttons[row][col],
-                        buttonStates[row][col]
-                    )
+                val button = Button(this)
+                buttonStates[row][col] = getInitialRandomState(answerArray[row * GRID_SIZE + col], random)
+                updateButtonImage(button, buttonStates[row][col])
+
+                button.setOnClickListener {
+                    // Update button state within allowed range
+                    buttonStates[row][col] = getNextState(buttonStates[row][col])
+                    updateButtonImage(button, buttonStates[row][col])
+
+                    // Check if the button state matches answerArray
+                    if (buttonStates[row][col] == answerArray[row * GRID_SIZE + col]) {
+                        showMessage("Correct answer for cell ($row, $col)")
+                    }
                 }
-                gridLayout.addView(buttons[row][col])
+
+                buttons[row][col] = button
+                gridLayout.addView(button)
             }
         }
     }
-
     private fun getInitialRandomState(answer: Int, random: Random): Int {
         var startRange = 0
         var endRange = 0
@@ -101,7 +105,9 @@ class Stage1Activity : AppCompatActivity() {
             13 -> button!!.setBackgroundResource(R.drawable.pipe_t_shape4)
         }
     }
-
+    private fun showMessage(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
     companion object {
         private const val GRID_SIZE = 3
     }
