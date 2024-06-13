@@ -4,7 +4,11 @@
 파이프를 회전시켜 하나로 연결된 파이프 라인을 완성하여 스테이지를 클리어 합니다.<br/>
 
 # 개발 계획/일정/실제 진행
+![image](https://github.com/ffasdd/spgp_2024/assets/96010665/3a0ed752-176d-424f-95aa-fb4b642d8faa)
+
 반복되는 오류와 졸업작품 등으로 인해 목표 수정<br/>
+![image](https://github.com/ffasdd/spgp_2024/assets/96010665/bc8bbf2e-c64d-43d9-b003-803c255f3267)
+
 
 # 사용된 기술<br/>
 GridLayout, Toast messages, Handler 등 <br/>
