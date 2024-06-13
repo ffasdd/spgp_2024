@@ -11,6 +11,11 @@ class Stage1Activity : AppCompatActivity() {
             GRID_SIZE
         )
     }
+    private val buttonStates = Array(GRID_SIZE) {
+        IntArray(
+            GRID_SIZE
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,26 +26,21 @@ class Stage1Activity : AppCompatActivity() {
         gridLayout.setRowCount(GRID_SIZE)
         gridLayout.setColumnCount(GRID_SIZE)
 
-        // Initialize grid buttons
+        // Initialize grid buttons and states
         for (row in 0 until GRID_SIZE) {
             for (col in 0 until GRID_SIZE) {
                 buttons[row][col] = Button(this)
-                buttons[row][col]!!.text = " " // Initially, no pipe
-                buttons[row][col]!!.setOnClickListener { v ->
-                    // Handle pipe placement or interactions here
-                    // For demo, let's change the text to represent a pipe
-                    val button = v as Button
-                    button.text = "P" // P represents a pipe
+                buttonStates[row][col] = 0 // Initial state is 0
+                buttons[row][col]!!.text = buttonStates[row][col].toString()
+                buttons[row][col]!!.setOnClickListener { // Update button state
+                    buttonStates[row][col] = (buttonStates[row][col] + 1) % 16
+                    buttons[row][col]!!.text =
+                        buttonStates[row][col].toString()
                 }
                 gridLayout.addView(buttons[row][col])
             }
         }
-
-        // For demo, place a few pipes
-        buttons[0][0]!!.text = "S" // Start pipe
-        buttons[1][0]!!.text = "|" // Vertical pipe
-        buttons[2][0]!!.text = "E" // End pipe
-    } // Add methods to handle game logic as needed
+    }
 
     companion object {
         private const val GRID_SIZE = 3
