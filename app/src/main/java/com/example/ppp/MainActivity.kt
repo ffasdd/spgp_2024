@@ -14,4 +14,9 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, Stage1Activity::class.java)
         startActivity(intent)
     }
+
+    public fun openStage2(view: View) {
+        val intent = Intent(this, Stage2Activity::class.java)
+        startActivity(intent)
+    }
 }

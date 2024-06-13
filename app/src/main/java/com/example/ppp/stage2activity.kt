@@ -3,9 +3,9 @@ package com.example.ppp // Replace with your actual package name
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
-class Stage1Activity : AppCompatActivity() {
+class Stage2Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.`activity_stage1`)
+        setContentView(R.layout.`activity_stage2`)
     }
 }
